@@ -1,0 +1,18 @@
+Arrancar el proyecto
+
+DATABASE_URL=postgres://postgres:postgres@localhost:54321/postgres?sslmode=disable
+
+>> cd database
+>> docker build . -t platzi-ws-rest-db
+>> docker run -p 54321:5432 platzi-ws-rest-db
+
+Si se observa que en las dependencias dice // Indirect
+Entonces ejecutar
+>> go mod tidy
+
+De ahí se corre con el comando
+>> docker build . -t platzi-rest-ws-app
+
+
+CORRER DOCKER COMPOSE
+docker-compose up -d

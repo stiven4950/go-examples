@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+
+<body>
+    <h1>Lista de Posts</h1>
+</body>
+<script>
+    fetch("http://localhost:5050/posts", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(response => {
+        return response.json()
+    }).then(json => {
+        console.log(json);
+    });
+
+    let ws = new WebSocket("ws://localhost:5050/ws");
+
+    ws.onopen = () => {
+        console.log("Connected to Websocket")
+    }
+
+    ws.onmessage = (event) => {
+        console.log(event.data);
+    }
+
+    ws.onerror = (event) => {
+        console.log("Error: ", event.data);
+    }
+</script>
+
+</html>
